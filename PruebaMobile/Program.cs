@@ -52,6 +52,7 @@ namespace playwrightTestsMobile
         }
 
         [Fact]
+        [Trait("Category", "CrossDevice")]
         public async Task ValidationSafari()
         {
             await _iphonePage.GotoAsync("https://www.saucedemo.com/");
@@ -67,6 +68,7 @@ namespace playwrightTestsMobile
         }
 
         [Fact]
+        [Trait("Category", "CrossDevice")]
         public async Task LoginAndInventoryValidation_Samsung()
         {
             await _samsungPage.GotoAsync("https://www.saucedemo.com/");
