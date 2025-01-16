@@ -24,8 +24,10 @@ jobs:
     - name: Install dependencies
       run: dotnet restore
 
-    - name: Install Playwright Browsers
-      run: pwsh bin/Debug/net8.0/playwright.ps1 install
+    - name: Install Playwright CLI and Browsers
+      run: |
+        dotnet tool install --global Microsoft.Playwright.CLI
+        playwright install
 
     - name: Run @crossdevice Devices
       run: dotnet test --filter "Category=crossdevice"
