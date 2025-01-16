@@ -29,5 +29,8 @@ jobs:
         dotnet tool install --global Microsoft.Playwright.CLI
         playwright install
 
+    - name: Install Playwright browsers
+      run: pwsh bin/Debug/net8.0/playwright.ps1 install
+
     - name: Run @crossdevice Devices
       run: dotnet test --filter "Category=crossdevice"
