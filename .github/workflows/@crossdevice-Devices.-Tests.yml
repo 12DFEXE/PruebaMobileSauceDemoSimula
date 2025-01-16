@@ -18,6 +18,9 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install
 
+    - name: Verify Playwright Installation
+      run: ls -al /home/runner/.cache/ms-playwright
+
     - name: Build project
       run: dotnet build --configuration Release
 
