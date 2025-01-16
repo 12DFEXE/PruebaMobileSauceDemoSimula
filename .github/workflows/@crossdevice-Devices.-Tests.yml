@@ -1,13 +1,13 @@
 name: Run @crossdevice Devices
 
 on:
-  push: # Ejecuta el workflow automáticamente en cada push
+  push:
     branches:
-      - main # Cambia 'main' por la rama que uses
-      - master
-  pull_request: # También se ejecuta en pull requests
+      - main
+  pull_request:
+    branches:
+      - main
 
-  
 jobs:
   run-tests:
     runs-on: ubuntu-24.04
@@ -19,10 +19,13 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: '8.0' # Cambia a la versión de .NET que usas
+        dotnet-version: '8.0'
 
     - name: Install dependencies
       run: dotnet restore
+
+    - name: Install Playwright Browsers
+      run: pwsh bin/Debug/net8.0/playwright.ps1 install
 
     - name: Run @crossdevice Devices
       run: dotnet test --filter "Category=crossdevice"
