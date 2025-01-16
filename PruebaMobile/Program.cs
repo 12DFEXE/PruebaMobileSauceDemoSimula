@@ -46,7 +46,7 @@ namespace playwrightTestsMobile
             await _iphonePage.CloseAsync();
             await _iphoneContext.CloseAsync();
             await _samsungPage.CloseAsync();
-            await _samsungContext.CloseAsync();//cambio para ejecucion automatica
+            await _samsungContext.CloseAsync();//cambio para ejecucion automaticaA
             await _browser.CloseAsync();
             _playwright.Dispose();
         }
