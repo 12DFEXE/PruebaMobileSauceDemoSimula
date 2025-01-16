@@ -20,10 +20,11 @@ jobs:
       with:
         node-version: '16.x'
 
-    - name: Install Playwright and browsers
+    - name: Install Playwright and dependencies
       run: |
-        npx playwright install
-        npx playwright install --with-deps  # Aseguramos que se instalen todos los navegadores
+        npm install playwright
+        npx playwright install --with-deps
+        pwsh ./node_modules/playwright/install.ps1  # Se ejecuta el script PowerShell
 
     - name: Verify Playwright Installation
       run: ls -al /home/runner/.cache/ms-playwright
