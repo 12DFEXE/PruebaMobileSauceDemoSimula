@@ -21,7 +21,12 @@ jobs:
         node-version: '16.x'
 
     - name: Install Playwright and browsers
-      run: npx playwright install --with-deps
+      run: |
+        npx playwright install
+        npx playwright install --with-deps  # Aseguramos que se instalen todos los navegadores
+
+    - name: Verify Playwright Installation
+      run: ls -al /home/runner/.cache/ms-playwright
 
     - name: Build project
       run: dotnet build --configuration Release
