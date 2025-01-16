@@ -4,6 +4,7 @@ on:
   push: # Ejecuta el workflow automáticamente en cada push
     branches:
       - main # Cambia 'main' por la rama que uses
+      - master
   pull_request: # También se ejecuta en pull requests
 
   
