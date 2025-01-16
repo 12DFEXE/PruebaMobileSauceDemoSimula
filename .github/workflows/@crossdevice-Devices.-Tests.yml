@@ -23,25 +23,13 @@ jobs:
     - name: Install PowerShell
       run: sudo apt-get install -y powershell
 
-  
-
-
     - name: Install Playwright and dependencies
-      run: npm install playwright
-           npx playwright install --with-deps
+      run: |
+        npm install playwright
+        npx playwright install --with-deps  # Instala todos los navegadores necesarios
 
     - name: Verify Playwright Installation
-      run: ls -al /home/runner/.cache/ms-playwright
-
-    - name: Force Install Chromium
-      run: 
-        npx playwright install chromium
-
-    - name: Install Chromium
-      run: 
-        npx playwright install chromium
-
-
+      run: ls -al /home/runner/.cache/ms-playwright  # Verifica la instalación
 
     - name: Build project
       run: dotnet build --configuration Release
