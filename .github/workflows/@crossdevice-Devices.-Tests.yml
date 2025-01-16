@@ -1,36 +1,25 @@
 name: Run @crossdevice Devices
 
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+on: [push, pull_request]
 
 jobs:
-  run-tests:
-    runs-on: ubuntu-24.04
+  build:
+    runs-on: ubuntu-latest
 
     steps:
-    - name: Check out code
-      uses: actions/checkout@v3
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
     - name: Setup .NET
-      uses: actions/setup-dotnet@v3
+      uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: '8.0'
+        dotnet-version: '8.0.x'
 
-    - name: Install dependencies
-      run: dotnet restore
+    - name: Install Playwright Browsers
+      run: npx playwright install
 
-    - name: Install Playwright CLI and Browsers
-      run: |
-        dotnet tool install --global Microsoft.Playwright.CLI
-        playwright install
+    - name: Build project
+      run: dotnet build --configuration Release
 
-    - name: Install Playwright browsers
-      run: pwsh bin/Debug/net8.0/playwright.ps1 install
-
-    - name: Run @crossdevice Devices
-      run: dotnet test --filter "Category=crossdevice"
+    - name: Run tests
+      run: dotnet test --configuration Release
