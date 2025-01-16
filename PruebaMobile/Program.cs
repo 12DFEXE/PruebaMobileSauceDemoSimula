@@ -31,7 +31,7 @@ namespace playwrightTestsMobile
             });
             _iphonePage = await _iphoneContext.NewPageAsync();
 
-            // Contexto para Samsung Galaxy S24
+            // Contexto para Samsung Galaxy S24-
             _samsungContext = await _browser.NewContextAsync(new BrowserNewContextOptions
             {
                 ViewportSize = new ViewportSize { Width = 412, Height = 915 },
