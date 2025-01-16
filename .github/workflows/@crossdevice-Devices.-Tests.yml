@@ -20,14 +20,11 @@ jobs:
       with:
         node-version: '16.x'
 
-    - name: Install Playwright and Dependencies
-      run: npx playwright install --with-deps
-
-    - name: Verify Playwright Installation
-      run: ls -al /home/runner/.cache/ms-playwright
-
     - name: Build project
       run: dotnet build --configuration Release
+
+    - name: Install Playwright browsers
+      run: pwsh bin/Release/net8.0/playwright.ps1 install
 
     - name: Run tests
       run: dotnet test --configuration Release
