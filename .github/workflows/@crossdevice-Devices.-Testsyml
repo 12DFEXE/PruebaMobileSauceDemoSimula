@@ -1,0 +1,27 @@
+name: Run @crossdevice Devices
+
+on:
+  push: # Ejecuta el workflow automáticamente en cada push
+    branches:
+      - main # Cambia 'main' por la rama que uses
+  pull_request: # También se ejecuta en pull requests
+
+  
+jobs:
+  run-tests:
+    runs-on: ubuntu-24.04
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v3
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '8.0' # Cambia a la versión de .NET que usas
+
+    - name: Install dependencies
+      run: dotnet restore
+
+    - name: Run @crossdevice Devices
+      run: dotnet test --filter "Category=crossdevice"
